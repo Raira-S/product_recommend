@@ -65,9 +65,10 @@ def display_product(result):
 
     # 「商品名」と「価格」
     st.success(f"""
-            商品名：{product['name']}（商品ID: {product['id']}）\n
+            商品名：{product['name']}\n
             価格：{product['price']}
     """)
+            # 商品名：{product['name']}（商品ID: {product['id']}）\n
 
     # 「商品カテゴリ」と「メーカー」と「ユーザー評価」
     st.code(f"""
