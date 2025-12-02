@@ -64,11 +64,22 @@ def display_product(result):
     st.markdown("以下の商品をご提案いたします。")
 
     # 「商品名」と「価格」
-    st.success(f"""
-            商品名：{product['name']}\n
-            価格：{product['price']}
-    """)
-            # 商品名：{product['name']}（商品ID: {product['id']}）\n
+    if 'id' in product:
+        st.success(f"""
+                商品名：{product['name']}（商品ID: {product['id']}）\n
+                価格：{product['price']}
+        """)
+    else:
+        st.success(f"""
+                商品名：{product['name']}\n
+                価格：{product['price']}
+        """)
+        logger.warning("商品情報に 'id' が含まれていません。")
+
+    if product['stock_status'] == '残りわずか':
+        st.warning(ct.STOCK_STATUS_WARNING)
+    elif product['stock_status'] == 'なし':
+        st.error(ct.STOCK_STATUS_ERROR)
 
     # 「商品カテゴリ」と「メーカー」と「ユーザー評価」
     st.code(f"""
